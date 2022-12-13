@@ -5,6 +5,7 @@ import shutil
 import tqdm
 import random
 
+
 def directory(c_directory: str):
     """Сreates a folder at the specified path, return NONE.
     Args:
@@ -12,6 +13,7 @@ def directory(c_directory: str):
     """
     if not os.path.isdir(c_directory):
         os.makedirs(c_directory)
+
 
 def copy_dataset(directory_obj: str, c_directory_obj: str):
     """Copies all files from one folder to another, return NONE.
@@ -29,6 +31,7 @@ def copy_dataset(directory_obj: str, c_directory_obj: str):
         shutil.copy(directory_obj + "\\" + i, c_directory_obj + "\\" + so + '.jpeg')
         j += 1
 
+
 def write_csv_copy(directory_obj: str, c_directory_obj: str, start: str, name: str):
     """Writes the absolute and relative path of the image to csv, return NONE.
     Args:
@@ -37,14 +40,16 @@ def write_csv_copy(directory_obj: str, c_directory_obj: str, start: str, name: s
         name (str): object class.
     """
     file = "copy_patch_rand.csv"
-    f = open(file, "a", encoding = "utf-8", newline = "")
-    f_writer = csv.DictWriter(f, fieldnames = ["Absolut_path", "Relative_patch", "Class"], delimiter = "|")
+    f = open(file, "a", encoding="utf-8", newline="")
+    f_writer = csv.DictWriter(f, fieldnames=["Absolut_path", "Relative_patch", "Class"], delimiter="|")
 
     data = os.listdir(directory_obj)
     r_directory_obj = os.path.relpath(c_directory_obj, start)
 
     for i in data:
-        f_writer.writerow({"Absolut_path": c_directory_obj + "\\" + i, "Relative_patch":  r_directory_obj + "\\" + i, "Class": name})
+        f_writer.writerow(
+            {"Absolut_path": c_directory_obj + "\\" + i, "Relative_patch": r_directory_obj + "\\" + i, "Class": name})
+
 
 def main():
     """Separates code blocks."""
@@ -63,4 +68,5 @@ def main():
 
 
 if __name__ == "__main__":
-	main()
+    main()
+
