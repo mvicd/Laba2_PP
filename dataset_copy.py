@@ -1,5 +1,6 @@
 import tqdm
 
+
 def directory(c_directory: str):
     """Сreates a folder at the specified path, return NONE.
     Args:
@@ -7,6 +8,7 @@ def directory(c_directory: str):
     """
     if not os.path.isdir(c_directory):
         os.makedirs(c_directory)
+
 
 def copy_dataset(directory_obj: str, c_directory_obj: str, name: str):
     """Copies all files from one folder to another, return NONE.
@@ -17,7 +19,8 @@ def copy_dataset(directory_obj: str, c_directory_obj: str, name: str):
     """
     data = os.listdir(directory_obj)
     for i in tqdm.tqdm(data):
-        shutil.copy(directory_obj + "\\" + i, c_directory_obj + "\\"+ name + "_" + i)
+        shutil.copy(directory_obj + "\\" + i, c_directory_obj + "\\" + name + "_" + i)
+
 
 def write_csv_copy(directory_obj: str, start: str, name: str):
     """Writes the absolute and relative path of the image to csv, return NONE.
@@ -27,10 +30,14 @@ def write_csv_copy(directory_obj: str, start: str, name: str):
         name (str): object class.
     """
     file = "copy_patch.csv"
-    f = open(file, "a", encoding = "utf-8", newline = "")
-    f_writer = csv.DictWriter(f, fieldnames = ["Absolut_path", "Relative_patch", "Class"], delimiter = "|")
+    f = open(file, "a", encoding="utf-8", newline="")
+    f_writer = csv.DictWriter(f, fieldnames=["Absolut_path", "Relative_patch", "Class"], delimiter="|")
+
+
 def write_csv_copy(directory_obj: str, start: str, name: str):
-        f_writer.writerow({"Absolut_path": directory_obj + "\\" + i, "Relative_patch":  r_directory_obj + "\\" + i, "Class": name})
+    f_writer.writerow(
+        {"Absolut_path": directory_obj + "\\" + i, "Relative_patch": r_directory_obj + "\\" + i, "Class": name})
+
 
 def main():
     """Separates code blocks."""
